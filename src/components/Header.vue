@@ -1,6 +1,7 @@
 <script setup>
-    import {ref} from 'vue'
+    import {ref,watch} from 'vue'
     import {useFeedStore} from '../stores/storeOfMine'
+    const props = defineProps(['suggestion'])
 
     const feedStore = useFeedStore()
     const url = ref('')
@@ -9,6 +10,12 @@
         feedStore.registerNewSource(url.value)
         url.value = ''
     }
+
+    watch(()=>props.suggestion, ()=>{
+        console.log('Suggestion changed to: ' + props.suggestion)
+        url.value=props.suggestion
+    })
+
 
 </script>
 

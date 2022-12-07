@@ -2,14 +2,19 @@
     import Post from './Post.vue';
     import Header from './Header.vue';
     import Sidebar from './Sidebar.vue';
+    import {ref} from 'vue'
+    const suggestion = ref('')
+    const handleSuggestion = (suggest) =>{
+        suggestion.value = suggest;
+    }
 
 </script>
 
 <template>
     <div class="main-container min-h-[100vh] grid place-items-center">
-        <Header/>
+        <Header :suggestion="suggestion"/>
         <Sidebar/>
-        <Post/>
+        <Post @click-suggested="handleSuggestion" />
 
     </div>
 </template>
