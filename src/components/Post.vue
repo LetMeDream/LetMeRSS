@@ -7,22 +7,34 @@
     const handleClick = (e) => {
         emits('clickSuggested', e.target.textContent)
     }
+    const resetCurrent = () => {
+        feedStore.current.source = null;
+        setTimeout(()=>{
+            feedStore.current = {
+                source:null,
+                items: null
+            };
+        },100)
+    }
 </script>
 
 <template>
-    <div class="main w-full h-full p-10 bg-[#edf2f4]">
+    <div class="main w-full h-full p-10 bg-[#edf2f4] z-0">
 
         <div class="">
-            <h1 v-if="feedStore.current.source">{{feedStore.current.source.name}}</h1>
+            <div v-if="feedStore.current.source" class="title flex justify-between mb-2">
+                <h1 >{{feedStore.current.source.name}}</h1>
+                <button @click="resetCurrent" class="border border-gray-400 px-4 py-2 hover:bg-gray-400 hover:text-white">Show Suggestions</button>
+            </div>
             <div v-else>
                 <h2>This looks rather empty</h2>
-                <p>Here, try some of these options:</p>
+                <p>Here, try some of these options:</p><br>
                 <ul>
                     <li @click="(e)=>handleClick(e)" class="list list-disc list-inside cursor-pointer hover:underline mb-2 caret-transparent">https://www.latimes.com/local/rss2.0.xml</li>
                     <li @click="(e)=>handleClick(e)" class="list list-disc list-inside cursor-pointer hover:underline mb-2 caret-transparent">https://www.theverge.com/microsoft/rss/index.xml</li>
 
                 </ul>
-                <card-component></card-component>
+                
             </div>
         </div>
 
@@ -50,7 +62,7 @@
 
 </style>
 <style>
-    figure{
+    img{
         margin:0 auto !important;
         max-width: min(75%, 600px) !important;
     }

@@ -11,26 +11,31 @@
 </script>
 
 <template>
-    <div class="main-container min-h-[100vh] grid place-items-center">
-        <Header :suggestion="suggestion"/>
-        <Sidebar/>
-        <Post @click-suggested="handleSuggestion" />
+    <div class="main-container min-h-[100vh] flex">
+        
+        <Sidebar class="side hidden md:block" />
+        <div class="content grow flex flex-col">
+            <Header :suggestion="suggestion"/>
+            <Post @click-suggested="handleSuggestion" />
+        </div>
+
 
     </div>
 </template>
 
 <style scoped>
 
-    .main-container{
+    /* .main-container{
         max-height: 100vh;
         grid-template-rows: 120px 1fr;
         grid-template-columns: 200px 1fr;
         grid-template-areas: 
-        " n h h h h "
-        " n p p p p"
-        " n p p p p"
-        " n p p p p"
-        " n p p p p";
-    }
+        " h h h h "
+        " p p p p"
+        " p p p p"
+        " p p p p"
+        " p p p p";
+    } */
+
 
 </style>

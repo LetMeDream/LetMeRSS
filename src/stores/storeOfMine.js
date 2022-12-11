@@ -56,6 +56,8 @@ export const useFeedStore = defineStore('feedStore', () => {
     current.value.items = [...posts];
     current.value.source = source;
   }
+
+  
   const registerNewSource = async (url) => {
     try {
       const response = await fetch(url);
